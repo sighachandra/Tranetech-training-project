@@ -6,6 +6,105 @@
   height: 40vmin;
   pointer-events: none;
 }
+.icon-text-wrapp{
+  margin-top: 30px;
+  /* margin-left: 30px; */
+  display: flex;
+  flex-direction: column;
+  
+}
+.icon-text-wrapp2{
+  margin-top: 30px;
+  margin-left: 30px;
+}
+.tabStyle{
+  width: 70%;
+}
+
+/* header styling */
+.header-al-style{
+  color: black !important;
+  background-color: cadetblue !important;
+  box-shadow: 0 -6px 10px 5px rgb(0 0 0 / 50%);
+  height: 90px !important;
+}
+.logo-wrap-div{
+  height: 93px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-img{
+  height: 80%;
+  width: 30%;
+}
+.header-tab-style{
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+.ant-tabs-ink-bar{
+  position: absolute;
+    background: #ff16b9;
+    pointer-events: none;
+    display: none;
+}
+.sign-up-btn-wrap{
+  padding-top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sign-up-btn{
+  background-color: transparent !important;
+  border: 1px solid !important;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/* Footer Styling */
+
+.footer-al-style{
+  background-color: cadetblue !important;
+}
+
+.w-100{
+  width: 100%;
+}
+.input-form-1{
+  width: 40%
+}
+.icon-text{
+  display: flex;
+  width: 70%;
+  /* background-color: #3f51b530; */
+  height: 40px;
+  justify-content: start;
+  align-items: center;
+}
+.form-p{
+  font-size: 16px;
+    font-weight: 600;
+    margin: 0px;
+}
+.tab-text{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.m-top-0{
+  margin-top: 0px;
+  margin-bottom: 0px !important;
+  margin-left: 12px;
+}
+.change-avatar{
+  margin-left: 20px;
+  margin-right: 10px;
+}
+.avatar-div{
+  margin-bottom: 20px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
