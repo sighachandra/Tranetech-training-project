@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { Col, Row, Tabs, Button} from 'antd';
 import logo from './Images/logo-newAPP.jpg';
+import { Outlet, Link } from "react-router-dom";
 
 const { TabPane } = Tabs;
 const HeaderContent = () => {
@@ -19,7 +20,7 @@ const HeaderContent = () => {
                   <TabPane tab={(<span className='tab-text'>PRODUCT</span>)} key="1"></TabPane>
                   <TabPane tab={(<span className='tab-text'>CATEGORIES</span>)} key="2"></TabPane>
                   <TabPane tab={(<span className='tab-text'>ABOUT US</span>)} key="3"></TabPane>
-                  <TabPane tab={(<span className='tab-text'>CONTACT</span>)} key="4"></TabPane>
+                  <TabPane tab={(<span className='tab-text'><Link to="/contact">CONTACT</Link></span>)} key="4"></TabPane>
                 </Tabs>
               </div>
             </Col>
