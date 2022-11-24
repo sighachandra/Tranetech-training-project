@@ -17,10 +17,10 @@ const HeaderContent = () => {
             <Col span={12}>
               <div className='header-tab-style'>
                 <Tabs   tabPosition="top">
-                  <TabPane tab={(<span className='tab-text'>PRODUCT</span>)} key="1"></TabPane>
+                  <TabPane tab={(<span className='tab-text'><Link className='link-c' to="/">HOME</Link></span>)} key="1"></TabPane>
                   <TabPane tab={(<span className='tab-text'>CATEGORIES</span>)} key="2"></TabPane>
                   <TabPane tab={(<span className='tab-text'>ABOUT US</span>)} key="3"></TabPane>
-                  <TabPane tab={(<span className='tab-text'><Link to="/contact">CONTACT</Link></span>)} key="4"></TabPane>
+                  <TabPane tab={(<span className='tab-text'><Link className='link-c' to="/contact">CONTACT</Link></span>)} key="4"></TabPane>
                 </Tabs>
               </div>
             </Col>

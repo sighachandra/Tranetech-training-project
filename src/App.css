@@ -46,7 +46,7 @@
 }
 .ant-tabs-ink-bar{
   position: absolute;
-    background: #ff16b9;
+    background: black !important;
     pointer-events: none;
     display: none;
 }
@@ -72,6 +72,10 @@
 .w-100{
   width: 100%;
 }
+.link-c{
+  color: black;
+}
+
 .input-form-1{
   width: 40%
 }
