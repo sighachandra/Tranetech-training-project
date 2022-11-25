@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Checkbox, Form, Input , DatePicker, Select, Upload} from 'antd';
 import { Col, Row,  Radio, Tabs, Menu} from 'antd';
+import { useDispatch } from 'react-redux/es/exports';
 import logo from './logo.svg';
 import './App.css';
 import {
@@ -17,6 +18,7 @@ import Avatar0 from './Images/empty.jpg';
 import Avatar1 from './Images/avatar1.jpg';
 import Avatar2 from './Images/avatar2.png';
 import Avatar3 from './Images/avatar3.png';
+import { setLoading } from './reduxStore/commonReducer';
 
 const { Title } = Typography;
 const { TabPane } = Tabs;
@@ -26,6 +28,7 @@ const userImages = [Avatar0, Avatar1, Avatar2, Avatar3];
 const App = () => {
   const [size, setSize] = useState('large');
   const [user, setUser] = useState(userImages[0]);
+  const dispatch = useDispatch();
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -36,6 +39,8 @@ const App = () => {
   const changeUser = () => {
     const index = userImages.indexOf(user);
     setUser(index < userImages.length - 1 ? userImages[index + 1] : userImages[1]);
+    dispatch(setLoading(true));
+
   };
 
   const removeUser = () => {
@@ -275,19 +280,7 @@ const App = () => {
       {/* <div>
         <Row>
            <Col span={6}>
-           <Menu  mode="inline">
-         <Menu.Item>item 1</Menu.Item>
-         <Menu.Item>item 2</Menu.Item>
-         <Menu.SubMenu title="sub menu">
-           <Menu.Item>
-             <Tabs>
-               <TabPane tab={(<span className='tab-text'><BellOutlined/>Notifications</span>)} key="6">
-          4th TAB PANE Content
-        </TabPane>
-             </Tabs>
-           </Menu.Item>
-        </Menu.SubMenu>
-      </Menu>
+          
            </Col>
         </Row>
      
