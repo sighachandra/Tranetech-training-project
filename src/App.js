@@ -61,16 +61,22 @@ const App = () => {
 // ========= deleting add user name =====================//
 
   const deleteItemClick = event => {
-    console.log(event.currentTarget.id);
     const cid = Number(event.currentTarget.id);
-    console.log("userDetails", userDetails);
-    console.log("cid", cid);
     const pendingUser = userDetails.filter(
       (item) => item.id !== cid,
     );
-    console.log("pendingUser", pendingUser);
     setUserDetails(pendingUser);
 
+  };
+
+  // ===========editbutton click function====================//
+
+  const editItemClick = event => {
+    const cid = Number(event.currentTarget.id);
+    const editUser = userDetails.filter(
+      (item) => item.id === cid,
+    );
+    setClearUserField(editUser[0].userName);
   };
 
 // ========userinput value updation===========//
@@ -81,7 +87,6 @@ const App = () => {
       setNewUser({ id: userArrayLength + 1, userName: event.target.value });
       setClearUserField(event.target.value);
     }
-      //  setNewUser(event.target.value);
        setIsNewUser(true);
   };
 
@@ -89,7 +94,6 @@ const App = () => {
 
   const checkNewUser = () => {
       if(isNewUser){
-        // setList(current => [...current, newUser]);
         setUserDetails(current => [...current, newUser]);
         setIsNewUser(false);
       }
@@ -357,7 +361,7 @@ const App = () => {
                      (
                       <div className='name-wrr'>
                           <Title key={singleName.id} className='name-ss' level={5}>{singleName.userName}</Title>
-                          <Button id={singleName.id} className='add-btn-in ppd-1' htmlType='button' type='primary' size={size} >EDIT</Button>
+                          <Button id={singleName.id} className='add-btn-in ppd-1' htmlType='button' type='primary' onClick={editItemClick} size={size} >EDIT</Button>
                           <Button id={singleName.id} className='add-btn-in ppd-1' htmlType='button' type='primary' onClick={deleteItemClick} size={size} >DELETE</Button>
                       </div>
                      
