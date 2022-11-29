@@ -110,6 +110,32 @@
   margin-bottom: 20px;
 }
 
+.wrap-in-add{
+  display: flex;
+}
+.name-ss{
+  width: 78%;
+  
+}
+.name-wrr{
+  border-bottom: 1px solid #5f9ea054;
+  display: flex;
+}
+.add-btn-in{
+  background-color: transparent;
+    border-color: cadetblue;
+    color: cadetblue;
+    margin-left: 12px;
+    height: 35px !important;
+    padding: 3px 15px 3px 15px !important;
+}
+.ppd-1{
+  margin-top: 12px;
+}
+.num-m-l{
+  margin-right: 5px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

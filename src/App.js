@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect }  from 'react';
+import axios from 'axios';
 import { Button, Checkbox, Form, Input , DatePicker, Select, Upload} from 'antd';
 import { Col, Row,  Radio, Tabs, Menu} from 'antd';
-import { useDispatch } from 'react-redux/es/exports';
+import {useSelector, useDispatch} from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 import {
@@ -10,7 +11,8 @@ import {
   CreditCardOutlined,
   BellOutlined,
   LaptopOutlined, 
-  NotificationOutlined, 
+  NotificationOutlined,
+  UnorderedListOutlined
 } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { Typography } from 'antd';
@@ -18,7 +20,8 @@ import Avatar0 from './Images/empty.jpg';
 import Avatar1 from './Images/avatar1.jpg';
 import Avatar2 from './Images/avatar2.png';
 import Avatar3 from './Images/avatar3.png';
-import { setLoading } from './reduxStore/commonReducer';
+import { setLoading, setFetchUserDetails } from './reduxStore/commonReducer';
+import { genActionStyle } from 'antd/es/alert/style';
 
 const { Title } = Typography;
 const { TabPane } = Tabs;
@@ -28,7 +31,17 @@ const userImages = [Avatar0, Avatar1, Avatar2, Avatar3];
 const App = () => {
   const [size, setSize] = useState('large');
   const [user, setUser] = useState(userImages[0]);
+  const [newUser, setNewUser] = useState('');
+  const [isNewUser, setIsNewUser] = useState(false);
+  const [clearUserField, setClearUserField] = useState('');
+
+  //============= rearranging it with new features =================//
+  const [userDetails, setUserDetails] = useState([]);
   const dispatch = useDispatch();
+
+  const common = useSelector(state => state.common);
+  let userName = common.fetchUserDetails.map((single, index) => single.name);
+  
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -40,11 +53,47 @@ const App = () => {
     const index = userImages.indexOf(user);
     setUser(index < userImages.length - 1 ? userImages[index + 1] : userImages[1]);
     dispatch(setLoading(true));
-
   };
 
   const removeUser = () => {
      setUser(userImages[0]);
+  };
+// ========= deleting add user name =====================//
+
+  const deleteItemClick = event => {
+    console.log(event.currentTarget.id);
+    const cid = Number(event.currentTarget.id);
+    console.log("userDetails", userDetails);
+    console.log("cid", cid);
+    const pendingUser = userDetails.filter(
+      (item) => item.id !== cid,
+    );
+    console.log("pendingUser", pendingUser);
+    setUserDetails(pendingUser);
+
+  };
+
+// ========userinput value updation===========//
+
+  const handleChange = event => {
+    const userArrayLength = userDetails.length;
+    if(userArrayLength > 0){
+      setNewUser({ id: userArrayLength + 1, userName: event.target.value });
+      setClearUserField(event.target.value);
+    }
+      //  setNewUser(event.target.value);
+       setIsNewUser(true);
+  };
+
+  //=========== checking of the new user name ================//
+
+  const checkNewUser = () => {
+      if(isNewUser){
+        // setList(current => [...current, newUser]);
+        setUserDetails(current => [...current, newUser]);
+        setIsNewUser(false);
+      }
+      setClearUserField('');
   };
 
   const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
@@ -62,6 +111,30 @@ const App = () => {
       }),
     };
   });
+
+
+  // ==========fetching user details===================//
+
+  const fetchUserDetails = async() => {
+    try{
+      const { data } = await axios.get('https://jsonplaceholder.typicode.com/users');
+      if(data){
+        dispatch(setFetchUserDetails(data));
+      
+      }
+      var userFromJson = data.map(indiUser => ({ id: indiUser.id, userName: indiUser.name }));
+      setUserDetails(userFromJson);
+    
+    }catch(error){
+
+    }
+  };
+
+  useEffect(() => {
+    fetchUserDetails();
+  }, []);
+
+
   
   return (
 
@@ -80,6 +153,7 @@ const App = () => {
               <Row>
                   <Col span={24}>
                   <Form
+                
                      layout="vertical"
                      name="basic"
                      labelCol={{
@@ -262,8 +336,37 @@ const App = () => {
         <TabPane tab={(<span className='tab-text'><CreditCardOutlined/>Billing</span>)} key="3">
           3rd TAB PANE Content
         </TabPane>
-        <TabPane tab={(<span className='tab-text'><BellOutlined/>Notifications</span>)} key="4">
-          4th TAB PANE Content
+        <TabPane tab={(<span className='tab-text'><UnorderedListOutlined />List of User</span>)} key="4">
+           <div>
+              <div className='wrap-in-add'>
+                <Input placeholder="Add name of a user"
+                type="text"
+                id="name"
+                value={clearUserField}
+                name="name"
+                onChange={handleChange}
+                 />
+                <Button className='add-btn-in' htmlType='button' type='primary' size={size} onClick={checkNewUser}>ADD</Button>
+              </div>
+              <div>
+              <Title level={3}>List of User</Title>
+              </div>
+              <div>
+              {userDetails.map(
+                  (singleName) =>
+                     (
+                      <div className='name-wrr'>
+                          <Title key={singleName.id} className='name-ss' level={5}>{singleName.userName}</Title>
+                          <Button id={singleName.id} className='add-btn-in ppd-1' htmlType='button' type='primary' size={size} >EDIT</Button>
+                          <Button id={singleName.id} className='add-btn-in ppd-1' htmlType='button' type='primary' onClick={deleteItemClick} size={size} >DELETE</Button>
+                      </div>
+                     
+                    ),
+                )}  
+              </div>
+              
+               {/* { (newUser !== '' && isNewUser) ? <p>{newUser}</p> : '' } */}
+           </div>
         </TabPane>
         <TabPane tab={(<span className='tab-text'><BellOutlined/>Notifications</span>)} key="5">
         <Menu
