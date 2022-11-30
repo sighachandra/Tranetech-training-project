@@ -32,8 +32,9 @@ const App = () => {
   const [size, setSize] = useState('large');
   const [user, setUser] = useState(userImages[0]);
   const [newUser, setNewUser] = useState('');
-  const [isNewUser, setIsNewUser] = useState(false);
+  const [isNewUser, setIsNewUser] = useState(0);
   const [clearUserField, setClearUserField] = useState('');
+  const [editedName, setEditedName] = useState('');
 
   //============= rearranging it with new features =================//
   const [userDetails, setUserDetails] = useState([]);
@@ -76,26 +77,40 @@ const App = () => {
     const editUser = userDetails.filter(
       (item) => item.id === cid,
     );
+    setEditedName(editUser[0].userName);
     setClearUserField(editUser[0].userName);
+    setIsNewUser(1);
   };
 
 // ========userinput value updation===========//
 
   const handleChange = event => {
     const userArrayLength = userDetails.length;
-    if(userArrayLength > 0){
+    if(isNewUser === 0){
       setNewUser({ id: userArrayLength + 1, userName: event.target.value });
       setClearUserField(event.target.value);
     }
-       setIsNewUser(true);
+    setClearUserField(event.target.value);
   };
 
   //=========== checking of the new user name ================//
 
   const checkNewUser = () => {
-      if(isNewUser){
+      if(isNewUser === 0){
         setUserDetails(current => [...current, newUser]);
-        setIsNewUser(false);
+        
+      }else if(clearUserField !== '' && isNewUser === 1){
+         const editedNameUser = userDetails.filter(
+          (item) => item.userName === editedName,
+        );
+  const editedDataName = userDetails.map((obj) => {
+          if (obj.id === editedNameUser[0].id) {
+            return {...obj, userName: clearUserField};
+          }
+          return obj;
+           });
+          setUserDetails(editedDataName);
+          setIsNewUser(0);
       }
       setClearUserField('');
   };
