@@ -21,19 +21,19 @@ const Categories = () => {
       subItems :  [
         {
             id : 11,
-     listItems : 'sdfcsd'
+     listItems : 'Television'
         },
         {
             id : 12,
-     listItems : 'dfsfsd'
+     listItems : 'Washing-Machine'
         },
         {
             id : 13,
-     listItems : 'dfsfsd'
+     listItems : 'Refridgrator'
         },
         {
             id : 14,
-     listItems : 'dfsfsd'
+     listItems : 'Air-Conditioner'
         },
       ]
         },
@@ -43,19 +43,19 @@ const Categories = () => {
       subItems :  [
         {
             id : 21,
-     listItems : 'dfsfsd'
+     listItems : 'Microwave-oven'
         },
         {
             id : 22,
-     listItems : 'dfsfsd'
+     listItems : 'Induction-cooker'
         },
         {
             id : 23,
-     listItems : 'dfsfsd'
+     listItems : 'Chimminey'
         },
         {
             id : 24,
-     listItems : 'dfsfsd'
+     listItems : 'Water-purifier'
         },
       ]
         },
@@ -65,19 +65,19 @@ const Categories = () => {
       subItems :  [
         {
             id : 31,
-     listItems : 'dfsfsd'
+     listItems : 'Clothing'
         },
         {
             id : 32,
-     listItems : 'dfsfsd'
+     listItems : 'Foot-wear'
         },
         {
             id : 33,
-     listItems : 'dfsfsd'
+     listItems : 'Daily-gadgets'
         },
         {
             id : 34,
-     listItems : 'dfsfsd'
+     listItems : 'Accessories'
         },
       ]
         },
@@ -87,19 +87,19 @@ const Categories = () => {
       subItems :  [
         {
             id : 41,
-     listItems : 'dfsfsd'
+     listItems : 'Clothing'
         },
         {
             id : 42,
-     listItems : 'dfsfsd'
+     listItems : 'Foot-wear'
         },
         {
             id : 43,
-     listItems : 'dfsfsd'
+     listItems : 'MakeUp/Body products'
         },
         {
             id : 44,
-     listItems : 'dfsfsd'
+     listItems : 'Bags'
         },
       ]
         },
@@ -109,19 +109,19 @@ const Categories = () => {
       subItems :  [
         {
             id : 51,
-     listItems : 'dfsfsd'
+     listItems : 'Clothing'
         },
         {
             id : 52,
-     listItems : 'dfsfsd'
+     listItems : 'Baby-products'
         },
         {
             id : 53,
-     listItems : 'dfsfsd'
+     listItems : 'Baby-food'
         },
         {
             id : 54,
-     listItems : 'dfsfsd'
+     listItems : 'Accesssories'
         },
       ]
         },

@@ -1,6 +1,6 @@
 import React, { useState , useEffect }  from 'react';
 import axios from 'axios';
-import { Button, Checkbox, Form, Input , DatePicker, Select, Upload} from 'antd';
+import { Button, Checkbox, Form, Input , DatePicker, Select, Upload, message} from 'antd';
 import { Col, Row,  Radio, Tabs, Menu} from 'antd';
 import {useSelector, useDispatch} from 'react-redux';
 import logo from './logo.svg';
@@ -22,6 +22,9 @@ import Avatar2 from './Images/avatar2.png';
 import Avatar3 from './Images/avatar3.png';
 import { setLoading, setFetchUserDetails } from './reduxStore/commonReducer';
 import { genActionStyle } from 'antd/es/alert/style';
+import Billing from './Billing';
+import { stringify } from 'rc-field-form/es/useWatch';
+
 
 const { Title } = Typography;
 const { TabPane } = Tabs;
@@ -35,6 +38,9 @@ const App = () => {
   const [isNewUser, setIsNewUser] = useState(0);
   const [clearUserField, setClearUserField] = useState('');
   const [editedName, setEditedName] = useState('');
+  const [componentDisabled, setComponentDisabled] = useState(true);
+
+  const [form] = Form.useForm();
 
   //============= rearranging it with new features =================//
   const [userDetails, setUserDetails] = useState([]);
@@ -42,10 +48,34 @@ const App = () => {
 
   const common = useSelector(state => state.common);
   let userName = common.fetchUserDetails.map((single, index) => single.name);
+
+
+
+
+  const onFill = () => {
+    // const nameVal = values.map((item) => item.name);
+    
+    const ss = 'sigha';
+    form.setFieldsValue({
+      username: ss,
+    });
+  };
+
+ 
+
+
   
   const onFinish = (values) => {
-    console.log('Success:', values);
+    const nameVal = [values].map((item) => item.name);
+    const usernA = nameVal[0].toLowerCase();
+    if(componentDisabled === true){
+      setComponentDisabled(false);
+      form.setFieldsValue({
+        username: `${usernA}123`,
+      });
+    }
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
@@ -59,6 +89,8 @@ const App = () => {
   const removeUser = () => {
      setUser(userImages[0]);
   };
+
+ 
 // ========= deleting add user name =====================//
 
   const deleteItemClick = event => {
@@ -153,7 +185,7 @@ const App = () => {
     fetchUserDetails();
   }, []);
 
-
+  
   
   return (
 
@@ -175,6 +207,7 @@ const App = () => {
                 
                      layout="vertical"
                      name="basic"
+                     form={form}
                      labelCol={{
                      span: 8,
                     }}
@@ -213,12 +246,12 @@ const App = () => {
                         name="username"
                         rules={[
                         {
-                          required: true,
+                          required: false,
                           message: 'Please input your username!',
                         },
                       ]}
                       >
-                      <Input/>
+                      <Input disabled={componentDisabled}/>
                       </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -249,7 +282,7 @@ const App = () => {
                         name="date-picker"
                         rules={[
                         {
-                          required: false,
+                          required: true,
                           message: 'Please input your date of birth!',
                         },
                       ]}
@@ -265,10 +298,21 @@ const App = () => {
                         name="phone"
                         rules={[
                         {
-                          required: false,
-                          message: 'Please input your username!',
+                          required: true,
+                          message: 'Please input your phone number',
+                        },
+                        {
+                          validator: async (rule, value) => {
+                            var pattern = new RegExp(/^[0-9\b]+$/);
+                            if(!pattern.test(value)){
+                              throw new Error('Please enter only number.');
+                            }else if(value.length != 10 ){
+                              throw new Error('Please enter a valid phone number');
+                            }
+                         },
                         },
                       ]}
+                      
                       >
                       <Input/>
                       </Form.Item>
@@ -281,7 +325,8 @@ const App = () => {
                         name="state"
                         rules={[
                         {
-                          required: false,
+                          required: true,
+                          message: 'Please select your state',
                         },
                       ]}
                       >
@@ -300,7 +345,8 @@ const App = () => {
                         name="address"
                         rules={[
                         {
-                          required: false,
+                          required: true,
+                          message: 'Please input your address',
                         },
                       ]}
                       >
@@ -315,7 +361,8 @@ const App = () => {
                         name="city"
                         rules={[
                         {
-                          required: false,
+                          required: true,
+                          message: 'Please input your city',
                         },
                       ]}
                       >
@@ -330,8 +377,17 @@ const App = () => {
                         name="postcode"
                         rules={[
                         {
-                          required: false,
+                          required: true,
+                          message: 'Please input your postcode',
                         },
+                        {
+                          validator: async (rule, value) =>{
+                            var pattern = new RegExp(/^[0-9\b]+$/);
+                            if(!pattern.test(value)){
+                              throw new Error('Please enter only number.');
+                            }
+                          }
+                        }
                       ]}
                       >
                       <Input/>
@@ -339,7 +395,7 @@ const App = () => {
                     </Col>
                     <Col span={12}>
                       <Form.Item>
-                        <Button type='primary' htmlType='submit'>Save Changes</Button>
+                        <Button type='primary' htmlType='submit' >SUBMIT</Button>
                       </Form.Item>
                     </Col>
                   </Row>
@@ -353,7 +409,7 @@ const App = () => {
           2nd TAB PANE Content
         </TabPane>
         <TabPane tab={(<span className='tab-text'><CreditCardOutlined/>Billing</span>)} key="3">
-          3rd TAB PANE Content
+          <Billing/>
         </TabPane>
         <TabPane tab={(<span className='tab-text'><UnorderedListOutlined />List of User</span>)} key="4">
            <div>
@@ -388,15 +444,7 @@ const App = () => {
            </div>
         </TabPane>
         <TabPane tab={(<span className='tab-text'><BellOutlined/>Notifications</span>)} key="5">
-        <Menu
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
-            style={{
-              height: '100%',
-            }}
-            items={items2}
-          />
+             testing
         </TabPane>
       </Tabs>
       {/* <div>
