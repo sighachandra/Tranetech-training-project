@@ -136,6 +136,59 @@
   margin-right: 5px;
 }
 
+/* designing lease contact */
+
+.lease-Header-Base{
+  padding: 0PX !important;
+  background-color: transparent !important;
+  height: auto !important;
+}
+.header-blue-clr{
+   background-color: #4191c8 !important;
+}
+.head1-height{
+  height: 54px !important;
+}
+.tab-style{
+  margin-bottom: 0px !important;
+  padding: 0px 30px 0px 30px;
+}
+.tab-indi-style{
+  color: white !important;
+  font-size: 16px;
+  font-weight: 500;
+  
+}
+.new-lease{
+  margin: 12px 30px !important;
+  font-weight: 500 !important;
+  color: #00000096 !important;
+}
+.date-pick{
+  width: 100% !important;
+}
+.icon-sizing-header{
+  font-size: 25px;
+    color: white;
+}
+.logged-user-h{
+  margin: 12px 0px;
+    color: white !important;
+}
+.add-lease-cc{
+  text-align: center;
+}
+
+.ant-tabs-nav{
+  margin-bottom: 0px !important;
+}
+.charge-details{
+  margin-left: 40px;
+    border-bottom: 2px solid #00000096;
+    color: #00000096;
+    padding-bottom: 5px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
