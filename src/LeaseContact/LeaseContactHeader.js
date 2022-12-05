@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Row } from 'antd';
-import { LeftOutlined, HomeOutlined, SearchOutlined, BellOutlined, QuestionOutlined} from '@ant-design/icons';
+import { LeftOutlined, HomeOutlined, SearchOutlined, BellOutlined, QuestionOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
 import { Tabs } from 'antd';
 

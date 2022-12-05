@@ -13,10 +13,10 @@ const LeaseContact = () => {
       <Header className='lease-Header-Base'>
          <LeaseContactHeader/>
       </Header>
-      <Content>
+      <Content className='content-spacing'>
         <MainDetails/>
       </Content>
-      <Footer>Footer</Footer>
+      <Footer></Footer>
     </Layout>
     );
 }

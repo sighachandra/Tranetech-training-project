@@ -188,7 +188,41 @@
     color: #00000096;
     padding-bottom: 5px;
 }
-
+.form-arrange{
+  margin: 0px;
+  padding: 8px 0px;
+  padding-bottom: 0px;
+}
+.end-icon-cc{
+  color: #ada8a8;
+}
+.content-spacing{
+  padding-top: 70px;
+}
+.table-arr{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.plus-arr{
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 12px;
+}
+.plus-delete{
+  color: #4191c8;
+}
+.c-s-hh{
+  padding-top: 65px;
+}
+textarea {
+  resize: none;
+}
+td{
+  text-align: center;
+}
+th{
+  text-align: center !important;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
